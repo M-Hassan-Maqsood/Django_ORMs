@@ -6,6 +6,7 @@ from school_management_system.apis.views import (
     SchoolReportAPIView,
 )
 
+
 urlpatterns = [
     path(
         "schools/<int:pk>/stats/", SchoolStatsAPIView.as_view(), name="school-stats-api"

@@ -93,6 +93,7 @@ class StudentReportAPIView(RetrieveAPIView):
             "average_marks": avg_marks,
             "status": "Pass" if avg_marks >= 50 else "Fail",
         }
+
         return Response(data)
 
 
