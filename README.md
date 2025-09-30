@@ -1,7 +1,7 @@
 # Django_ORMs
 
 ---
-# 🎓 School Management System
+# School Management System
 
 ## Overview
 This project is a **School Management System** built with **Django** and **Django REST Framework**.
