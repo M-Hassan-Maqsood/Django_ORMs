@@ -10,9 +10,7 @@ from django.db.models import (
     Case,
     When,
     Value,
-    IntegerField,
     CharField,
-    DecimalField,
     Window,
     F,
 )
@@ -43,8 +41,8 @@ class SchoolStatsAPIView(RetrieveAPIView):
                 "total_courses",
                 "avg_marks",
             )
-            .first()
         )
+
         return Response(school)
 
 
@@ -57,7 +55,6 @@ class TeacherCoursesAPIView(RetrieveAPIView):
             self.get_queryset()
             .filter(id=pk)
             .values("id", "name", "school__name")
-            .first()
         )
 
         courses = []
@@ -75,6 +72,7 @@ class TeacherCoursesAPIView(RetrieveAPIView):
             "teacher": teacher,
             "courses": courses,
         }
+
         return Response(data)
 
 
