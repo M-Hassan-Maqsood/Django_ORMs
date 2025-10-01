@@ -1,5 +1,7 @@
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, RetrieveAPIView
+from rest_framework.response import Response
 
+from school.utils import generate_school_report, get_student_report, get_school_stats, get_teacher_courses
 from school.models import School, Teacher, Student, Course, ExamResult
 from school.serializers import (
     SchoolSerializer,
@@ -58,3 +60,40 @@ class ExamResultListCreateAPIView(ListCreateAPIView):
 class ExamResultRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     queryset = ExamResult.objects.all()
     serializer_class = ExamResultSerializer
+
+
+class SchoolStatsRetrieveAPIView(RetrieveAPIView):
+    queryset = School.objects.all()
+
+    def retrieve(self, request, *args, **kwargs):
+        pk = kwargs.get("pk")
+        data = get_school_stats(pk)
+
+        return Response(data)
+
+
+class TeacherCourseRetrieveAPIView(RetrieveAPIView):
+    queryset = Teacher.objects.all()
+
+    def retrieve(self, request, *args, **kwargs):
+        pk = kwargs.get("pk")
+        data = get_teacher_courses(pk)
+
+        return Response(data)
+
+
+class StudentReportRetrieveAPIView(RetrieveAPIView):
+    queryset = Student.objects.all()
+
+    def retrieve(self, request, *args, **kwargs):
+        pk = kwargs.get("pk")
+        data = get_student_report(pk)
+
+        return Response(data)
+
+
+class SchoolReportRetrieveAPIView(RetrieveAPIView):
+    def retrieve(self, request, *args, **kwargs):
+        data = generate_school_report()
+
+        return Response(data)

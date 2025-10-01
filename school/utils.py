@@ -70,3 +70,58 @@ def generate_school_report():
     )
 
     return data
+
+def get_school_stats(pk):
+    school = (
+        School.objects.filter(id=pk)
+        .annotate(
+            total_students=Count("students", distinct=True),
+            total_teachers=Count("teachers", distinct=True),
+            total_courses=Count("teachers__courses", distinct=True),
+            avg_marks=Avg("students__results__marks"),
+        )
+        .values(
+            "id",
+            "name",
+            "city",
+            "total_students",
+            "total_teachers",
+            "total_courses",
+            "avg_marks",
+        )
+    )
+
+    return school
+
+def get_teacher_courses(pk):
+    teacher = Teacher.objects.filter(id=pk).values("id", "name", "school__name")
+    courses = []
+    for course in Teacher.objects.get(id=pk).courses.prefetch_related("students").all():
+        courses.append(
+            {
+                "course": course.name,
+                "students": list(course.students.values("id", "name")),
+            }
+        )
+
+    data = {
+        "teacher": teacher,
+        "courses": courses,
+    }
+
+    return data
+
+def get_student_report(pk):
+    student = Student.objects.get(id=pk)
+    results = student.results.values("course__name", "marks", "date")
+    avg_marks = student.results.aggregate(avg=Avg("marks"))["avg"] or 0
+
+    data = {
+        "student": student.name,
+        "school": student.school.name,
+        "results": list(results),
+        "average_marks": avg_marks,
+        "status": "Pass" if avg_marks >= 50 else "Fail",
+    }
+
+    return data
