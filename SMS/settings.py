@@ -30,19 +30,22 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
+DEFAULT_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # Third-party app providing extra management commands
-    "django_extensions",
-    # Custom app for managing school related models and APIs
-    "school_management_system",
-
 ]
+THIRD_PARTY_PACKAGES = [
+    "django_extensions",
+]
+CUSTOM_APPS = [
+    "school",
+]
+
+INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_PACKAGES + CUSTOM_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

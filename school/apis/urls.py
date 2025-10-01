@@ -1,6 +1,6 @@
 from django.urls import path
 
-from school_management_system.apis.views import (
+from school.apis.views import (
     SchoolStatsRetrieveAPIView,
     TeacherCourseRetrieveAPIView,
     StudentReportRetrieveAPIView,
@@ -12,21 +12,21 @@ urlpatterns = [
     path(
         "school/<int:pk>/stats/",
         SchoolStatsRetrieveAPIView.as_view(),
-        name="school-stats-api"
+        name="school-stats-retrieve-api"
     ),
     path(
         "teacher/<int:pk>/courses/",
         TeacherCourseRetrieveAPIView.as_view(),
-        name="teacher-courses-api",
+        name="teacher-courses-retrieve-api",
     ),
     path(
         "student/<int:pk>/report/",
         StudentReportRetrieveAPIView.as_view(),
-        name="student-report-api",
+        name="student-report-retrieve-api",
     ),
     path(
         "stats/",
         SchoolReportRetrieveAPIView.as_view(),
-        name="school-report-api"
+        name="school-report-retrieve-api"
     ),
 ]

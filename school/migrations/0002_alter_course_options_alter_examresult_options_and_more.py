@@ -6,7 +6,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("school_management_system", "0001_initial"),
+        ("school", "0001_initial"),
     ]
 
     operations = [

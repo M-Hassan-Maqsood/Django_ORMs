@@ -1,7 +1,7 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 
-from school_management_system.models import School, Teacher, Student, Course, ExamResult
-from school_management_system.serializers import (
+from school.models import School, Teacher, Student, Course, ExamResult
+from school.serializers import (
     SchoolSerializer,
     TeacherSerializer,
     StudentSerializer,

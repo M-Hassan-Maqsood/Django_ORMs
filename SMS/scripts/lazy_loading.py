@@ -1,11 +1,11 @@
 from django.db import connection
 
-from school_management_system.models import School, ExamResult, Student
+from school.models import School, ExamResult, Student
 
 
 def demonstrate_lazy_evaluation():
     connection.queries_log.clear()
-
+    # Create queryset
     qs = School.objects.all()
     print("\n Step 2: Created queryset")
     print("Queries executed:", len(connection.queries_log))

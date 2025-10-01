@@ -60,7 +60,7 @@ class Migration(migrations.Migration):
                     models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE,
                         related_name="students",
-                        to="school_management_system.school",
+                        to="school.school",
                     ),
                 ),
             ],
@@ -84,7 +84,7 @@ class Migration(migrations.Migration):
                     models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE,
                         related_name="results",
-                        to="school_management_system.course",
+                        to="school.course",
                     ),
                 ),
                 (
@@ -92,7 +92,7 @@ class Migration(migrations.Migration):
                     models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE,
                         related_name="results",
-                        to="school_management_system.student",
+                        to="school.student",
                     ),
                 ),
             ],
@@ -101,7 +101,7 @@ class Migration(migrations.Migration):
             model_name="course",
             name="students",
             field=models.ManyToManyField(
-                related_name="courses", to="school_management_system.student"
+                related_name="courses", to="school.student"
             ),
         ),
         migrations.CreateModel(
@@ -122,7 +122,7 @@ class Migration(migrations.Migration):
                     models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE,
                         related_name="teachers",
-                        to="school_management_system.school",
+                        to="school.school",
                     ),
                 ),
             ],
@@ -133,7 +133,7 @@ class Migration(migrations.Migration):
             field=models.ForeignKey(
                 on_delete=django.db.models.deletion.CASCADE,
                 related_name="courses",
-                to="school_management_system.teacher",
+                to="school.teacher",
             ),
         ),
     ]

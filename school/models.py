@@ -16,8 +16,9 @@ class School(models.Model):
 
 class Teacher(models.Model):
     name = models.CharField(max_length=100)
+
     school = models.ForeignKey(
-        School, on_delete=models.CASCADE, related_name="teachers"
+        "school.School", on_delete=models.CASCADE, related_name="teachers"
     )
 
     class Meta:
@@ -31,8 +32,9 @@ class Teacher(models.Model):
 
 class Student(models.Model):
     name = models.CharField(max_length=100)
+
     school = models.ForeignKey(
-        School, on_delete=models.CASCADE, related_name="students"
+        "school.School", on_delete=models.CASCADE, related_name="students"
     )
 
     class Meta:
@@ -46,10 +48,11 @@ class Student(models.Model):
 
 class Course(models.Model):
     name = models.CharField(max_length=100)
+
     teacher = models.ForeignKey(
-        Teacher, on_delete=models.CASCADE, related_name="courses"
+        "school.Teacher", on_delete=models.CASCADE, related_name="courses"
     )
-    students = models.ManyToManyField(Student, related_name="courses")
+    students = models.ManyToManyField("school.Student", related_name="courses")
 
     class Meta:
         db_table = "course"
@@ -63,10 +66,11 @@ class Course(models.Model):
 class ExamResult(models.Model):
     marks = models.DecimalField(max_digits=5, decimal_places=2)
     date = models.DateField()
+
     student = models.ForeignKey(
-        Student, on_delete=models.CASCADE, related_name="results"
+        "school.Student", on_delete=models.CASCADE, related_name="results"
     )
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="results")
+    course = models.ForeignKey("school.Course", on_delete=models.CASCADE, related_name="results")
 
     class Meta:
         db_table = "exam_result"

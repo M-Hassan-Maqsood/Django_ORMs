@@ -1,7 +1,7 @@
 import random
 import datetime
 
-from school_management_system.models import School, Teacher, Student, Course, ExamResult
+from school.models import School, Teacher, Student, Course, ExamResult
 
 
 def generate_school_data():
@@ -76,6 +76,7 @@ def create_course_data(teachers, students):
             name=name,
             teacher=teacher,
         )
+
         selected_students = random.sample(students, random.randint(5, 12))
         course.students.add(*selected_students)
         courses.append(course)
