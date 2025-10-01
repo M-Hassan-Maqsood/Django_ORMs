@@ -1,4 +1,5 @@
 from django.urls import path
+
 from school_management_system.views import (
     SchoolListCreateAPIView,
     SchoolRetrieveUpdateDestroyAPIView,
@@ -11,6 +12,7 @@ from school_management_system.views import (
     ExamResultListCreateAPIView,
     ExamResultRetrieveUpdateDestroyAPIView,
 )
+
 
 urlpatterns = [
     # Schools

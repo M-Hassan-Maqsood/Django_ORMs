@@ -18,7 +18,7 @@ from django.db.models import (
 from school_management_system.models import School, Student, Teacher, Course, ExamResult
 
 
-class SchoolStatsAPIView(RetrieveAPIView):
+class SchoolStatsRetrieveAPIView(RetrieveAPIView):
     queryset = School.objects.all()
 
     def retrieve(self, request, *args, **kwargs):
@@ -46,7 +46,7 @@ class SchoolStatsAPIView(RetrieveAPIView):
         return Response(school)
 
 
-class TeacherCoursesAPIView(RetrieveAPIView):
+class TeacherCourseRetrieveAPIView(RetrieveAPIView):
     queryset = Teacher.objects.all()
 
     def retrieve(self, request, *args, **kwargs):
@@ -76,7 +76,7 @@ class TeacherCoursesAPIView(RetrieveAPIView):
         return Response(data)
 
 
-class StudentReportAPIView(RetrieveAPIView):
+class StudentReportRetrieveAPIView(RetrieveAPIView):
     queryset = Student.objects.all()
 
     def retrieve(self, request, *args, **kwargs):
@@ -97,7 +97,7 @@ class StudentReportAPIView(RetrieveAPIView):
         return Response(data)
 
 
-class SchoolReportAPIView(RetrieveAPIView):
+class SchoolReportRetrieveAPIView(RetrieveAPIView):
 
     def retrieve(self, request, *args, **kwargs):
         data = {}

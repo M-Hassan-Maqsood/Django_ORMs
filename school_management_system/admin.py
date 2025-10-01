@@ -1,4 +1,5 @@
 from django.contrib import admin
+
 from school_management_system.models import School, Teacher, Student, Course, ExamResult
 
 

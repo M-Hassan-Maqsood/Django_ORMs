@@ -6,14 +6,25 @@ from school_management_system.models import School, Teacher, Student, Course, Ex
 
 def generate_school_data():
     print("Deleting old data...")
-    ExamResult.objects.all().delete()
+    School.objects.all().delete()
     Course.objects.all().delete()
     Student.objects.all().delete()
     Teacher.objects.all().delete()
-    School.objects.all().delete()
+    ExamResult.objects.all().delete()
 
     print("Creating schools...")
-    # Create Schools
+    schools=create_school_data()
+    print("Creating teachers...")
+    teachers=create_teacher_data(schools)
+    print("Creating students...")
+    students=create_student_data(schools)
+    print("Creating courses...")
+    courses=create_course_data(teachers, students)
+    print("Creating exam results...")
+    create_exam_result_data(students, courses)
+    print("All school data created successfully!")
+
+def create_school_data():
     schools = []
     for i in range(3):
         school = School.objects.create(
@@ -24,7 +35,9 @@ def generate_school_data():
         )
         schools.append(school)
 
-    print("Creating teachers...")
+    return schools
+
+def create_teacher_data(schools):
     teachers = []
     for i in range(6):
         teacher = Teacher.objects.create(
@@ -33,7 +46,9 @@ def generate_school_data():
         )
         teachers.append(teacher)
 
-    print("Creating students...")
+    return teachers
+
+def create_student_data(schools):
     students = []
     for i in range(20):
         student = Student.objects.create(
@@ -42,7 +57,9 @@ def generate_school_data():
         )
         students.append(student)
 
-    print("Creating courses...")
+    return students
+
+def create_course_data(teachers, students):
     courses = []
     course_names = [
         "Mathematics",
@@ -51,6 +68,7 @@ def generate_school_data():
         "Biology",
         "Computer Science",
         "English",
+        "PST",
     ]
     for i, name in enumerate(course_names):
         teacher = random.choice(teachers)
@@ -58,21 +76,20 @@ def generate_school_data():
             name=name,
             teacher=teacher,
         )
-        # Random students enroll
         selected_students = random.sample(students, random.randint(5, 12))
         course.students.add(*selected_students)
         courses.append(course)
 
-    print("Creating exam results...")
+    return courses
+
+def create_exam_result_data(students, courses):
     for student in students:
         for course in random.sample(
             courses, random.randint(2, 4)
-        ):  # each student enrolls in 2–4 courses
+        ):
             ExamResult.objects.create(
                 student=student,
                 course=course,
                 marks=random.randint(40, 100),
                 date=datetime.date(2024, random.randint(1, 12), random.randint(1, 28)),
             )
-
-    print("All school data created successfully!")

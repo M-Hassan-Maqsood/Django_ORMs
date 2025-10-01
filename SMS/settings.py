@@ -37,8 +37,11 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "school_management_system",
+    # Third-party app providing extra management commands
     "django_extensions",
+    # Custom app for managing school related models and APIs
+    "school_management_system",
+
 ]
 
 MIDDLEWARE = [

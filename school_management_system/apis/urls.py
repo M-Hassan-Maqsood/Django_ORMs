@@ -1,25 +1,26 @@
 from django.urls import path
+
 from school_management_system.apis.views import (
-    SchoolStatsAPIView,
-    TeacherCoursesAPIView,
-    StudentReportAPIView,
-    SchoolReportAPIView,
+    SchoolStatsRetrieveAPIView,
+    TeacherCourseRetrieveAPIView,
+    StudentReportRetrieveAPIView,
+    SchoolReportRetrieveAPIView,
 )
 
 
 urlpatterns = [
     path(
-        "schools/<int:pk>/stats/", SchoolStatsAPIView.as_view(), name="school-stats-api"
+        "school/<int:pk>/stats/", SchoolStatsRetrieveAPIView.as_view(), name="school-stats-api"
     ),
     path(
-        "teachers/<int:pk>/courses/",
-        TeacherCoursesAPIView.as_view(),
+        "teacher/<int:pk>/courses/",
+        TeacherCourseRetrieveAPIView.as_view(),
         name="teacher-courses-api",
     ),
     path(
-        "students/<int:pk>/report/",
-        StudentReportAPIView.as_view(),
+        "student/<int:pk>/report/",
+        StudentReportRetrieveAPIView.as_view(),
         name="student-report-api",
     ),
-    path("stats/", SchoolReportAPIView.as_view(), name="school-report-api"),
+    path("stats/", SchoolReportRetrieveAPIView.as_view(), name="school-report-api"),
 ]
