@@ -10,7 +10,9 @@ from school_management_system.apis.views import (
 
 urlpatterns = [
     path(
-        "school/<int:pk>/stats/", SchoolStatsRetrieveAPIView.as_view(), name="school-stats-api"
+        "school/<int:pk>/stats/",
+        SchoolStatsRetrieveAPIView.as_view(),
+        name="school-stats-api"
     ),
     path(
         "teacher/<int:pk>/courses/",
@@ -22,5 +24,9 @@ urlpatterns = [
         StudentReportRetrieveAPIView.as_view(),
         name="student-report-api",
     ),
-    path("stats/", SchoolReportRetrieveAPIView.as_view(), name="school-report-api"),
+    path(
+        "stats/",
+        SchoolReportRetrieveAPIView.as_view(),
+        name="school-report-api"
+    ),
 ]
