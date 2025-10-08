@@ -21,7 +21,7 @@ class EmployeeCustomSerializer(serializers.Serializer):
             "name": instance.name,
             "age": instance.age,
             "department": instance.department,
-            "salary": f"{instance.salary}",
+            "salary": {instance.salary},
         }
 
         return data
@@ -34,7 +34,7 @@ class EmployeeCustomSerializer(serializers.Serializer):
 
     def validate(self, attrs):
         if attrs["department"].lower() == "hr" and attrs["salary"] < 30000:
-            raise serializers.ValidationError("HR employees must have at least 30000 salary.")
+            raise serializers.ValidationError("HR must have at least 30000 salary.")
 
         return attrs
 
