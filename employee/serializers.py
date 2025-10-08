@@ -28,7 +28,6 @@ class EmployeeCustomSerializer(serializers.Serializer):
 
     def validate_age(self, value):
         if value < 18:
-
             raise serializers.ValidationError("Employee must be at least 18 years old.")
 
         return value
