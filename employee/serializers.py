@@ -21,7 +21,7 @@ class EmployeeCustomSerializer(serializers.Serializer):
             "name": instance.name,
             "age": instance.age,
             "department": instance.department,
-            "salary": {instance.salary},
+            "salary": instance.salary,
         }
 
         return data
