@@ -21,3 +21,22 @@ It demonstrates:
 - **ExamResult** -> Student’s marks in a Course.
 
 ---
+
+# Django Custom Serialization
+
+This project demonstrates a complete implementation of **custom serialization and deserialization** in Django REST Framework (DRF) without using `ModelSerializer`.  
+It provides a clear understanding of how Django handles data conversion between **Python objects** and **JSON**, along with custom validations and manual create/update methods.
+
+---
+
+## Features
+
+- Custom Serializer implementation without `ModelSerializer`
+- Manual handling of:
+  - Serialization (Model -> JSON)
+  - Deserialization (JSON -> Python object)
+  - Field-level validation
+  - Object-level validation
+  - Implements `create()` and `update()` methods 
+
+---
