@@ -1,4 +1,4 @@
-# Django_ORMs
+# Django_ORMs in testing phase
 
 ---
 # School Management System
